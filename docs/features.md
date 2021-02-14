@@ -13,7 +13,7 @@ The application **must** contain the following functionality:
     * Released
     * Runtime
     * Genre
-    * Directory
+    * Director
 + Users can select movies and add to watchlist (permanent or temporary)
 + Additional page aggregating statistics in the watch list for example:
   - Average runtime
