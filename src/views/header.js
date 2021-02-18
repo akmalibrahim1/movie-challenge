@@ -12,101 +12,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import ShowChart from '@material-ui/icons/ShowChart';
 import Button from '@material-ui/core/Button'
-import { searchTypesList } from '../util/omdb'
 import { useHistory } from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-  grow: {
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-    fontSize: 18
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: '43%',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '39ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-    width: "100%",
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  iconSection: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "flex-end"
-  },
-  headerPadding: {
-    [theme.breakpoints.up('md')]: {
-      marginLeft: '10%',
-      marginRight: '10%',
-      padding: 0
-    }
-  },
-  headerFont: {
-    fontSize: 14
-  },
-  desktopButton: {
-    background: '#F5C745',
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  }
-}));
+import {useStyles} from '../style/styling';
 
 function Header() {
-  const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [searchText, setSearchText] = React.useState("");
-
+  const classes = useStyles()
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };

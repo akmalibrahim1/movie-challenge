@@ -3,23 +3,12 @@ import * as api from '../util/omdb';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {useStyles} from '../style/styling';
 
 const maxNumberOfPages = 6; //each page of api call is 10 results long
 const resultsToDisplay = 4; //how many results to display per row
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        height: "100%",
-        width: "100%"
-    },
-    control: {
-        padding: theme.spacing(2),
-    },
-}));
 
 export function SearchResults(props) {
     var classes = useStyles()
@@ -72,15 +61,10 @@ export function SearchResults(props) {
                 }
             }
             const results = (
-                <Grid container className={classes.root} spacing={4}>
+                <Grid container className={classes.gridItemSizing} spacing={4}>
                     {listOfResults}
                 </Grid>
             )
-            // const results = response.map(function (result, index) {
-            //     console.log(JSON.stringify(result))
-            //     return <DisplayCard movie={result} key={result.imdbID} poster={result.Poster}
-            //         title={result.Title} year={result.Year} plot={result.Plot} />
-            // })
             setSearchResult(results);
         };
         fetchResults();

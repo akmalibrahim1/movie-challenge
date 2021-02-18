@@ -1,37 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { Box, CardActionArea, Container, IconButton, Paper } from '@material-ui/core';
+import { Box, Paper } from '@material-ui/core';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
-
-const useStyles = makeStyles({
-  root: {
-    marginBottom: 12,
-    height: "100%",
-    width: "100%"
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  paper: {
-    height: "100%",
-    width: "100%",
-  },
-  image: {
-    width: "100%",
-    height: "100%"
-  },
-  cardText: {
-    justifyContent: "flex-end"
-  }
-});
+import {useStyles} from '../style/styling';
 
 export function DisplayCard(props) {
   const classes = useStyles();
