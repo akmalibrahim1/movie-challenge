@@ -26,7 +26,7 @@ export function SearchResults(props) {
     const { searchValue } = props.location.state
     const [searchResult, setSearchResult] = React.useState(null);
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('md'));
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const checkScreenSize = () => {
         if (matches) {
             return 3
