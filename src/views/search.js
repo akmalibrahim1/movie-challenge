@@ -48,37 +48,34 @@ export function SearchResults(props) {
                 var tempPage = await api.searchMovieAndSeries(searchValue, i)
                 response = response.concat(tempPage.Search)
             }
-            const results = []
-                //Create the results page
-                for (var i = 0; i < response.length; i++) {
+            const listOfResults = []
+            //Create the results page
+            for (var i = 0; i < response.length; i++) {
 
-                    //create the group to be used in a row of results
-                    var group = []
-                    const groupLimit = i + resultsToDisplay
-                    for (i; i < groupLimit; i++) {
-                        if (i >= response.length) {
-                            break;
-                        }
-                        group.push(response[i])
+                //create the group to be used in a row of results
+                var group = []
+                const groupLimit = i + resultsToDisplay
+                for (i; i < groupLimit; i++) {
+                    if (i >= response.length) {
+                        break;
                     }
-                    if (group.length != 0) {
-                        var value = (
-                            <Grid container className={classes.root} spacing={4}>
-                                <Grid item xs={12} spacing={12}>
-                                    <Grid container justify="center" spacing={4} >
-                                        {group.map((result, index) => (
-                                            <Grid key={index} item xs={3}>
-                                                <DisplayCard movie={result} key={result.imdbID} poster={result.Poster}
-                                                    title={result.Title} year={result.Year} plot={result.Plot} />
-                                            </Grid>
-                                        ))}
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        )
-                        results.push(value)
-                    }
+                    group.push(response[i])
                 }
+                if (group.length != 0) {
+                    var value = group.map((result, index) => (
+                        <Grid key={index} item xs={checkScreenSize()}>
+                            <DisplayCard movie={result} key={result.imdbID} poster={result.Poster}
+                                title={result.Title} year={result.Year} plot={result.Plot} />
+                        </Grid>
+                    ))
+                    listOfResults.push(value)
+                }
+            }
+            const results = (
+                <Grid container className={classes.root} spacing={4}>
+                    {listOfResults}
+                </Grid>
+            )
             // const results = response.map(function (result, index) {
             //     console.log(JSON.stringify(result))
             //     return <DisplayCard movie={result} key={result.imdbID} poster={result.Poster}
@@ -87,7 +84,7 @@ export function SearchResults(props) {
             setSearchResult(results);
         };
         fetchResults();
-    }, [searchValue])
+    }, [searchValue, matches])
 
     return (
         <div style={{ "flexGrow": 1 }}>
