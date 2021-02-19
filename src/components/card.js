@@ -5,17 +5,18 @@ import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import { useStyles } from '../style/styling';
 import Button from '@material-ui/core/Button'
+import { searchById } from '../util/omdb';
 
 export function DisplayCard(props) {
   const classes = useStyles();
-  const initialLabel = (localStorage.getItem(props.data.imdbID) === null) ? <TurnedInNotIcon /> : <TurnedInIcon />
+  const initialLabel = (localStorage.getItem(props.imdbId) === null) ? <TurnedInNotIcon /> : <TurnedInIcon />
   console.log(JSON.stringify(props))
-  console.log("Is " + props.data.imdbID + " in the watchlist: " + (localStorage.getItem(props.data.imdbID) !== null))
+  console.log("Is " + props.imdbId + " in the watchlist: " + (localStorage.getItem(props.imdbId) !== null))
   const [addOrRemoveIcon, setAddOrRemoveIcon] = React.useState(initialLabel)
-  const addOrRemoveFromWatchList = (item) => {
-    const imdbId = item.imdbID
+  const addOrRemoveFromWatchList = async (imdbId) => {
     if (localStorage.getItem(imdbId) == null) {
-      localStorage.setItem(imdbId, JSON.stringify(item));
+      var result = await searchById(imdbId)
+      localStorage.setItem(imdbId, JSON.stringify(result));
       setAddOrRemoveIcon(<TurnedInIcon />)
       console.log("Added to local storage: " + imdbId)
     } else {
@@ -40,7 +41,7 @@ export function DisplayCard(props) {
         {/** TEMP BUTTON */}
       </Box>
       <Box className={classes.displayBottomRight}>
-        <Button className={classes.bottomRightButton} onClick={() => addOrRemoveFromWatchList(props.data)}>
+        <Button className={classes.bottomRightButton} onClick={() => addOrRemoveFromWatchList(props.imdbId)}>
           {addOrRemoveIcon}
         </Button>
       </Box>

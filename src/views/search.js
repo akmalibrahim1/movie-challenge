@@ -2,27 +2,17 @@ import { DisplayCard } from '../components/card';
 import * as api from '../util/omdb';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import { Grid, Box } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {useStyles} from '../style/styling';
+import { useStyles } from '../style/styling';
+import DisplayGrid from '../components/displayGrid'
 
 const maxNumberOfPages = 6; //each page of api call is 10 results long
-const resultsToDisplay = 4; //how many results to display per row
 
 export function SearchResults(props) {
-    var classes = useStyles()
+    // var classes = useStyles()
     const { searchValue } = props.location.state
     const [searchResult, setSearchResult] = React.useState(null);
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'));
-    const checkScreenSize = () => {
-        if (matches) {
-            return 3
-        } else {
-            return 12
-        }
-    }
     React.useEffect(() => {
         const fetchResults = async () => {
             var response = []
@@ -37,44 +27,19 @@ export function SearchResults(props) {
                 var tempPage = await api.searchMovieAndSeries(searchValue, i)
                 response = response.concat(tempPage.Search)
             }
-            const listOfResults = []
-            //Create the results page
-            for (var i = 0; i < response.length; i++) {
-
-                //create the group to be used in a row of results
-                var group = []
-                const groupLimit = i + resultsToDisplay
-                for (i; i < groupLimit; i++) {
-                    if (i >= response.length) {
-                        break;
-                    }
-                    group.push(response[i])
-                }
-                if (group.length != 0) {
-                    var value = group.map((result, index) => (
-                        <Grid key={index} item xs={checkScreenSize()}>
-                            <DisplayCard data={result} key={result.imdbID} poster={result.Poster}
-                                title={result.Title} year={result.Year} plot={result.Plot} />
-                        </Grid>
-                    ))
-                    listOfResults.push(value)
-                }
-            }
-            const results = (
-                <Grid container className={classes.gridItemSizing} spacing={4}>
-                    {listOfResults}
-                </Grid>
-            )
+            const results = < DisplayGrid itemsToDisplay={response} />       
             setSearchResult(results);
         };
         fetchResults();
-    }, [searchValue, matches])
+    }, [searchValue])
 
     return (
         <div style={{ "flexGrow": 1 }}>
-            <Typography variant="h5">
-                Search Result for {searchValue}
-            </Typography>
+            <Box style={{ "marginTop": "1rem", "marginBottom": "1rem" }}>
+                <Typography variant="h5">
+                    Search Result for <span style={{ "fontStyle": "italic", "textDecorationLine": "underline" }}>{searchValue}</span>
+                </Typography>
+            </Box>
             {searchResult}
         </div>
     );
