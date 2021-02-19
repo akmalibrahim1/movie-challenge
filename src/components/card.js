@@ -3,10 +3,27 @@ import Typography from '@material-ui/core/Typography';
 import { Box, Paper } from '@material-ui/core';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
-import {useStyles} from '../style/styling';
+import { useStyles } from '../style/styling';
+import Button from '@material-ui/core/Button'
 
 export function DisplayCard(props) {
   const classes = useStyles();
+  const initialLabel = (localStorage.getItem(props.data.imdbID) === null) ? <TurnedInNotIcon /> : <TurnedInIcon />
+  console.log(JSON.stringify(props))
+  console.log("Is " + props.data.imdbID + " in the watchlist: " + (localStorage.getItem(props.data.imdbID) !== null))
+  const [addOrRemoveIcon, setAddOrRemoveIcon] = React.useState(initialLabel)
+  const addOrRemoveFromWatchList = (item) => {
+    const imdbId = item.imdbID
+    if (localStorage.getItem(imdbId) == null) {
+      localStorage.setItem(imdbId, JSON.stringify(item));
+      setAddOrRemoveIcon(<TurnedInIcon />)
+      console.log("Added to local storage: " + imdbId)
+    } else {
+      localStorage.removeItem(imdbId);
+      setAddOrRemoveIcon(<TurnedInNotIcon />)
+      console.log("Removed from local storage: " + imdbId)
+    }
+  }
 
   return (
     <Paper elevation={3} className={classes.paper}>
@@ -20,6 +37,12 @@ export function DisplayCard(props) {
         <Typography variant="subtitle1">
           {props.year}
         </Typography>
+        {/** TEMP BUTTON */}
+      </Box>
+      <Box className={classes.displayBottomRight}>
+        <Button className={classes.bottomRightButton} onClick={() => addOrRemoveFromWatchList(props.data)}>
+          {addOrRemoveIcon}
+        </Button>
       </Box>
     </Paper>
   );

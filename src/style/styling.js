@@ -90,10 +90,24 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         height: "100%",
         width: "100%",
+        display: "flex",
+        flexFlow: "column"
     },
     image: {
         width: "100%",
         height: "100%"
+    },
+    displayBottomRight: {
+        display: 'flex',
+        flexGrow: '1',
+        justifyContent: 'flex-end',
+        paddingBottom : '1rem',
+        paddingRight : '1rem'
+    },
+    bottomRightButton: {
+        background: '#F5C745',
+        marginLeft: 'auto',
+        marginTop: 'auto'
     }
 }));
 

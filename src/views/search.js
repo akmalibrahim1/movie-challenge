@@ -53,7 +53,7 @@ export function SearchResults(props) {
                 if (group.length != 0) {
                     var value = group.map((result, index) => (
                         <Grid key={index} item xs={checkScreenSize()}>
-                            <DisplayCard movie={result} key={result.imdbID} poster={result.Poster}
+                            <DisplayCard data={result} key={result.imdbID} poster={result.Poster}
                                 title={result.Title} year={result.Year} plot={result.Plot} />
                         </Grid>
                     ))
