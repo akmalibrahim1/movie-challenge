@@ -41,6 +41,12 @@ function Header() {
     })
   }
 
+  const displayWatchlist = () => {
+    history.push({
+      pathname: '/watchlist',
+    })
+  }
+
   const menuId = 'primary-navigation';
 
   const mobileMenuId = 'primary-navigation-mobile';
@@ -107,6 +113,7 @@ function Header() {
                 aria-label="My watchlist"
                 aria-controls={menuId}
                 color="inherit"
+                onClick={displayWatchlist}
               >
                 <BookmarkIcon />
               Watchlist
