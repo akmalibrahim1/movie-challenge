@@ -41,6 +41,12 @@ function Header() {
     })
   }
 
+  const handleKeyPress = (event) => {
+    if(event.key == "Enter"){
+      doSearch();
+    }
+  }
+
   const displayWatchlist = () => {
     history.push({
       pathname: '/watchlist',
@@ -66,19 +72,12 @@ function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton
-          aria-label="My movie watchlist"
-          color="inherit"
-        >
+      <MenuItem aria-label="My watchlist" onClick={displayWatchlist}>
           <BookmarkIcon />
-        </IconButton>
         <p>Watchlist</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton color="inherit">
+      <MenuItem aria-label="My watchlist statistics" onClick={displayWatchlistStats}>
           <ShowChart />
-        </IconButton>
         <p>Watchlist Stats</p>
       </MenuItem>
     </Menu>
@@ -107,6 +106,7 @@ function Header() {
               value={searchText}
               onChange={handleSearchTextChange}
               type="text"
+              onKeyUp={handleKeyPress}
             />
           </div>
           <div className={classes.sectionDesktop}>
