@@ -97,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100%"
     },
+    imageDetails: {
+        width: "60%",
+        height: "100%"
+    },
     icon: {
         width: "45%",
         height: "100%",
@@ -113,6 +117,10 @@ const useStyles = makeStyles((theme) => ({
         background: '#F5C745',
         marginLeft: 'auto',
         marginTop: 'auto'
+    },
+    unstyledList: {
+        listStyleType: 'none',
+        paddingInlineStart: '0'
     }
 }));
 
