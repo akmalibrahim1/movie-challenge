@@ -8,10 +8,13 @@ import MasksIcon from '../assets/masks.svg'
 import StarIcon from '../assets/star.svg'
 import StopwatchIcon from '../assets/stopwatch.svg'
 import DirectorIcon from '../assets/director-chair.svg'
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 export function WatchlistStats(props) {
-    var classes = useStyles()
+    const theme = useTheme();
+    const classes = useStyles();
+    const isFullScreen = useMediaQuery(theme.breakpoints.up('sm'));
     const genreBreakdown = watchlist.genreBreakdown()
     const runTimeBreakdown = watchlist.runtimeBreakdown()
     const directorBreakdown = watchlist.directorBreakdown()
@@ -50,36 +53,66 @@ export function WatchlistStats(props) {
     generateAggregateBreakdowns(ratingBreakdown, ratingDisplay)
     return (
         <div style={{ "flexGrow": 1, "marginTop": "1rem" }}>
-            <Grid container className={classes.gridItemSizing} spacing={4}>
-                <Grid item xs={3} />
-                <Grid item xs={3}>
-                    <CustomCard title="Favorite Genres" image={MasksIcon} imagealt="Image of tragedy/comedy masks">
-                        <ol>
-                            {genreDisplay}
-                        </ol>
-                    </CustomCard>
+            { 
+                isFullScreen && <Grid container className={classes.gridItemSizing} spacing={4}>
+                    <Grid item xs={3} />
+                    <Grid item xs={3}>
+                        <CustomCard title="Favorite Genres" image={MasksIcon} imagealt="Image of tragedy/comedy masks">
+                            <ol>
+                                {genreDisplay}
+                            </ol>
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <CustomCard title="Favorite Directors" image={DirectorIcon} imagealt="Image of director chair">
+                            <ol>
+                                {directorDisplay}
+                            </ol>
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={3} />
+                    <Grid item xs={3} />
+                    <Grid item xs={3}>
+                        <CustomCard title="Runtime Statistics" image={StopwatchIcon} imagealt="Image of a stopwatch">
+                            {runtimeDisplay}
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <CustomCard title="Rating Statistics" image={StarIcon} imagealt="Image of a star">
+                            {ratingDisplay}
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={3} />
                 </Grid>
-                <Grid item xs={3}>
-                    <CustomCard title="Favorite Directors" image={DirectorIcon} imagealt="Image of director chair">
-                        <ol>
-                            {directorDisplay}
-                        </ol>
-                    </CustomCard>
+            }
+            { 
+                !isFullScreen && <Grid container className={classes.gridItemSizing} spacing={4}>
+                    <Grid item xs={12}>
+                        <CustomCard title="Favorite Genres" image={MasksIcon} imagealt="Image of tragedy/comedy masks">
+                            <ol>
+                                {genreDisplay}
+                            </ol>
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <CustomCard title="Favorite Directors" image={DirectorIcon} imagealt="Image of director chair">
+                            <ol>
+                                {directorDisplay}
+                            </ol>
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <CustomCard title="Runtime Statistics" image={StopwatchIcon} imagealt="Image of a stopwatch">
+                            {runtimeDisplay}
+                        </CustomCard>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <CustomCard title="Rating Statistics" image={StarIcon} imagealt="Image of a star">
+                            {ratingDisplay}
+                        </CustomCard>
+                    </Grid>
                 </Grid>
-                <Grid item xs={3} />
-                <Grid item xs={3} />
-                <Grid item xs={3}>
-                    <CustomCard title="Runtime Statistics" image={StopwatchIcon} imagealt="Image of a stopwatch">
-                        {runtimeDisplay}
-                    </CustomCard>
-                </Grid>
-                <Grid item xs={3}>
-                    <CustomCard title="Rating Statistics" image={StarIcon} imagealt="Image of a star">
-                        {ratingDisplay}
-                    </CustomCard>
-                </Grid>
-                <Grid item xs={3} />
-            </Grid>
+            }
         </div>
     );
 }
