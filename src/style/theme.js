@@ -14,6 +14,9 @@ const Theme = createMuiTheme({
     overrides: {
         MuiTypography: {
             h2:{
+                fontSize: 24
+            },
+            h3:{
                 fontSize: 16
             }
         }

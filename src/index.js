@@ -9,6 +9,7 @@ import theme from './style/theme';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import { SearchResults } from './views/search'
+import { WatchlistStats } from './views/watchlist-stats'
 require("dotenv").config() 
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Switch>
             <Route path="/watchlist" component={Watchlist}/>
             <Route path="/searchresults" component={SearchResults}/>
+            <Route path="/watchliststats" component={WatchlistStats}/>
           </Switch>
         </Box>
         <Footer />

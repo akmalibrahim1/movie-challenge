@@ -41,20 +41,20 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
             width: '39ch',
         },
     },
     sectionDesktop: {
         display: 'none',
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
             display: 'flex',
         },
         width: "100%",
     },
     sectionMobile: {
         display: 'flex',
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
             display: 'none',
         },
     },
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "flex-end"
     },
     headerPadding: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
             marginLeft: '10%',
             marginRight: '10%',
             padding: 0
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     },
     desktopButton: {
         background: '#F5C745',
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
             display: 'none'
         }
     },
@@ -96,6 +96,11 @@ const useStyles = makeStyles((theme) => ({
     image: {
         width: "100%",
         height: "100%"
+    },
+    icon: {
+        width: "45%",
+        height: "100%",
+        marginTop: "1rem"
     },
     displayBottomRight: {
         display: 'flex',

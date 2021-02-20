@@ -47,6 +47,12 @@ function Header() {
     })
   }
 
+  const displayWatchlistStats = () => {
+    history.push({
+      pathname: '/watchliststats',
+    })
+  }
+
   const menuId = 'primary-navigation';
 
   const mobileMenuId = 'primary-navigation-mobile';
@@ -73,7 +79,7 @@ function Header() {
         <IconButton color="inherit">
           <ShowChart />
         </IconButton>
-        <p>Movie Stats</p>
+        <p>Watchlist Stats</p>
       </MenuItem>
     </Menu>
   );
@@ -118,9 +124,14 @@ function Header() {
                 <BookmarkIcon />
               Watchlist
             </Button>
-              <Button aria-label="View your watchlist statistics" color="inherit">
+              <Button
+                edge="end"
+                aria-label="View your watchlist statistics"
+                aria-controls="navigate to watchlist statistics"
+                color="inherit"
+                onClick={displayWatchlistStats}>
                 <ShowChart></ShowChart>
-              Movie Stats
+              Watchlist Stats
             </Button>
             </div>
           </div>
