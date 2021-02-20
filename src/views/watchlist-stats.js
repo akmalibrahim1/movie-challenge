@@ -30,7 +30,7 @@ export function WatchlistStats(props) {
                 break;
             }
             resultsList.push(
-                (<li><span>{key}</span></li>)
+                (<li key={index}><span>{key}</span></li>)
             )
             index++
         }
@@ -42,7 +42,7 @@ export function WatchlistStats(props) {
                 break;
             }
             resultsList.push(
-                (<li><span>{key}: {value}</span></li>)
+                (<li key={index}><span>{key}: {value}</span></li>)
             )
             index++
         }
