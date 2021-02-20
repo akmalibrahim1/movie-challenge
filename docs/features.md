@@ -22,9 +22,9 @@ The application **must** contain the following functionality:
 
 ## Optional Features in order
 Below is a list of additional functionality I intend to include in the application ordered by importance:
-1. Search by different categories: Genre, Directors, Actors/actresses
-2. Movie plot/poster in movie details
-3. Recommended movies based of aggregated stats
-4. Responsive webpage
+1. <strike>Search by different categories: Genre, Directors, Actors/actresses</strike>**Not possible with API**
+2. <strike>Movie plot/poster in movie details</strike> **✔**
+3. <strike>Recommended movies based of aggregated stats</strike>**Not possible with API**
+4. <strike>Responsive webpage</strike> **✔**
 5. Light/night option
 6. Sharelist
