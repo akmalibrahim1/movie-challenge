@@ -60,7 +60,7 @@ export function CustomCard(props) {
           <img className={classes.icon} src={props.image} alt={props.imagealt} />
         </Box>
         <Box display="flex" height="50%" width="100%" justifyContent="center">
-          <Typography style={{"marginTop": "auto", "paddingBottom": "2rem", "textDecoration": "underline"}} variant="h2" component="h2">{props.title}</Typography>
+          <Typography style={{"marginTop": "auto", "paddingBottom": "2rem"}} variant="h2" component="h2">{props.title}</Typography>
         </Box>
       </Box>
       <Box padding="1rem">
