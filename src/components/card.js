@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Box, Paper } from '@material-ui/core';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
@@ -6,7 +6,6 @@ import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import { useStyles } from '../style/styling';
 import Button from '@material-ui/core/Button'
 import { searchById } from '../util/omdb';
-import { useTheme } from '@material-ui/core/styles';
 import DetailsDialog from './dialog'
 import ImageHolder from '../assets/image.svg'
 

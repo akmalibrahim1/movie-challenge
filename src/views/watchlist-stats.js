@@ -1,4 +1,3 @@
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { CustomCard } from "../components/card";
 import * as watchlist from '../util/watchlist-util'

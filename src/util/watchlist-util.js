@@ -12,19 +12,6 @@ export function getWishlistItems(type) {
     }
     return wishlist
 }
-//CONSIDER MOVING ADD/REMOVING TO WATCHLIST HERE AND ALLOW FOR CALLBACK FUNCTIONS
-// export const addOrRemoveFromWatchList = async (imdbId) => {
-//     if (localStorage.getItem(imdbId) == null) {
-//       var result = await searchById(imdbId)
-//       localStorage.setItem(imdbId, JSON.stringify(result));
-//       setAddOrRemoveIcon(<TurnedInIcon />)
-//       console.log("Added to local storage: " + imdbId)
-//     } else {
-//       localStorage.removeItem(imdbId);
-//       setAddOrRemoveIcon(<TurnedInNotIcon />)
-//       console.log("Removed from local storage: " + imdbId)
-//     }
-// }
 
 export function genreBreakdown() {
     const storedItems = Object.keys(localStorage)

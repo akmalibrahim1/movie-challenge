@@ -6,7 +6,6 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import * as watchlist from '../util/watchlist-util'
 import DisplayGrid from '../components/displayGrid'
-import { useTheme } from '@material-ui/core/styles';
 
 function TabPanel(props) {
   const { children, value, index } = props;
