@@ -110,8 +110,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexGrow: '1',
         justifyContent: 'flex-end',
-        paddingBottom : '1rem',
-        paddingRight : '1rem'
+        paddingBottom: '1rem',
+        paddingRight: '1rem'
     },
     bottomRightButton: {
         background: '#F5C745',
@@ -121,6 +121,48 @@ const useStyles = makeStyles((theme) => ({
     unstyledList: {
         listStyleType: 'none',
         paddingInlineStart: '0'
+    },
+    watchlist: {
+        flexGrow: "1",
+        backgroundColor: theme.palette.background.paper,
+    },
+    watchListTabs: {
+        marginTop: "3.5rem",
+        marginBottom: "2rem"
+    },
+    columnBaseContainer: {
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "15%"
+    },
+    columnBaseContainer_image: {
+        width: "10rem",
+        marginLeft: "auto",
+        marginRight: "auto"
+    },
+    columnBaseContainer_message: {
+        flexGrow: "1",
+        marginLeft: "auto",
+        marginRight: "auto",
+        textAlign: "center",
+        marginTop: "1rem"
+    },
+    customCard_image: {
+        display: "flex",
+        flexGrow: "1",
+        height: "50%",
+        width: "100%",
+        justifyContent: "center"
+    },
+    customCard_titleContainer: {
+        display: "flex",
+        height: "50%",
+        width: "100%",
+        justifyContent: "center"
+    },
+    customCard_titleText: {
+        marginTop: "auto",
+        paddingBottom: "2rem" 
     }
 }));
 

@@ -8,9 +8,17 @@ import { useTheme } from '@material-ui/core/styles';
 function DisplayGrid(props) {
     const classes = useStyles()
     const theme = useTheme();
+
+    //used to determine if the screen size is over 600px
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+    //size of each item in a row (3 or 12 columns long)
     const initialState = matches ? 3 : 12
+
+    //state value that will be used in the gui to dynamically update column size
     const [itemsPerRow, setItemsPerRow] = React.useState(initialState)
+
+    //Update column size when screen size changes
     React.useEffect(() => {
         const checkScreenSize = () => {
             if (matches) {

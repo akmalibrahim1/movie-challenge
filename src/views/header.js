@@ -127,8 +127,7 @@ function Header() {
             </Button>
               <Button
                 edge="end"
-                aria-label="View your watchlist statistics"
-                aria-controls="navigate to watchlist statistics"
+                aria-label="My watchlist statistics"
                 color="inherit"
                 onClick={displayWatchlistStats}>
                 <ShowChart></ShowChart>
@@ -138,7 +137,7 @@ function Header() {
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
-              aria-label="show more"
+              aria-label="show menu"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}

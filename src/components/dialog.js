@@ -14,32 +14,36 @@ import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import ImageHolder from '../assets/image.svg'
 import { getImdbLink } from '../util/omdb'
+
+//Text value to be displayed inside the dialogue
 const addToWatchList = "Add To Watchlist"
 const removeFromWatchlist = "Remove From Watchlist"
+
+
 export default function DetailsDialog(props) {
-    // const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const classes = useStyles();
-
-
+    
+    //Determine size of screen and if its less than 600px
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    console.log(props.item)
+
+    //Set initial values for the text and icon that indicates where the item is in the watchlist
     const initialIcon = (localStorage.getItem(props.item.imdbID) === null) ? <TurnedInNotIcon /> : <TurnedInIcon />
     const initialText = (localStorage.getItem(props.item.imdbID) === null) ? "Add To Watchlist" : "Remove From Watchlist"
     const [addOrRemoveText, setAddOrRemoveText] = React.useState(initialText)
     const [addOrRemoveIcon, setAddOrRemoveIcon] = React.useState(initialIcon)
+
+    // Method used by the rendered components to add and remove items from the watchlist
     const addOrRemoveFromWatchList = async (item) => {
         if (item != null) {
             if (localStorage.getItem(item.imdbID) == null) {
                 localStorage.setItem(item.imdbID, JSON.stringify(item));
                 setAddOrRemoveIcon(<TurnedInIcon />)
                 setAddOrRemoveText(removeFromWatchlist)
-                console.log("Added to local storage: " + item.imdbID)
             } else {
                 localStorage.removeItem(item.imdbID);
                 setAddOrRemoveIcon(<TurnedInNotIcon />)
                 setAddOrRemoveText(addToWatchList)
-                console.log("Removed from local storage: " + item.imdbID)
             }
         }
     }

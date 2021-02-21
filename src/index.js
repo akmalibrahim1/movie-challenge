@@ -14,6 +14,8 @@ import  LandingPage  from './views/landing'
 
 require("dotenv").config() 
 
+//Main index page which hooks all the react components to the main index page 
+// Uses routes to determine what page needs to be rendered.
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

@@ -13,15 +13,23 @@ import { useTheme } from '@material-ui/core/styles';
 export function WatchlistStats(props) {
     const theme = useTheme();
     const classes = useStyles();
+
+    //used to determine if the screen size exceeds 600px
     const isFullScreen = useMediaQuery(theme.breakpoints.up('sm'));
+
+    //Retrieves the information about your watchlist (Favorite Genre, Favorite Director, Averate runtime, Average rating)
     const genreBreakdown = watchlist.genreBreakdown()
     const runTimeBreakdown = watchlist.runtimeBreakdown()
     const directorBreakdown = watchlist.directorBreakdown()
     const ratingBreakdown = watchlist.ratingsBreakdown()
+
+    //Hold the UI objects that will be displayed for each category abopve
     var genreDisplay = []
     var runtimeDisplay = []
     var directorDisplay = []
     var ratingDisplay = []
+    
+    //Generate a list of the top 5 of a given category i.e. Top 5 genre
     const generateListBreakdown = (itemsList, resultsList, additionalMessage) => {
         var index = 0
         for (const [key, value] of Object.entries(itemsList)) {
@@ -34,6 +42,8 @@ export function WatchlistStats(props) {
             index++
         }
     }
+
+    //Generate a list of aggregated information
     const generateAggregateBreakdowns = (itemsList, resultsList, additionalMessage) => {
         var index = 0
         for (const [key, value] of Object.entries(itemsList)) {
@@ -53,7 +63,9 @@ export function WatchlistStats(props) {
     return (
         <div style={{ "flexGrow": 1, "marginTop": "1rem" }}>
             { 
+                //Display only when screen is above 600px
                 isFullScreen && <Grid container className={classes.gridItemSizing} spacing={4}>
+                    {/** uses empty grid to format the page, alternative would be use full size grid and resize/padd contents to desired location */}
                     <Grid item xs={3} />
                     <Grid item xs={3}>
                         <CustomCard title="Favorite Genres" image={MasksIcon} imagealt="Image of tragedy/comedy masks">
@@ -85,6 +97,7 @@ export function WatchlistStats(props) {
                 </Grid>
             }
             { 
+                //Display only when screen is below 600px
                 !isFullScreen && <Grid container className={classes.gridItemSizing} spacing={4}>
                     <Grid item xs={12}>
                         <CustomCard title="Favorite Genres" image={MasksIcon} imagealt="Image of tragedy/comedy masks">
