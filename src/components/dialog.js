@@ -13,8 +13,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import ImageHolder from '../assets/image.svg'
-
-const addToWatchList= "Add To Watchlist"
+import { getImdbLink } from '../util/omdb'
+const addToWatchList = "Add To Watchlist"
 const removeFromWatchlist = "Remove From Watchlist"
 export default function DetailsDialog(props) {
     // const [open, setOpen] = React.useState(false);
@@ -25,7 +25,7 @@ export default function DetailsDialog(props) {
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     console.log(props.item)
     const initialIcon = (localStorage.getItem(props.item.imdbID) === null) ? <TurnedInNotIcon /> : <TurnedInIcon />
-    const initialText = (localStorage.getItem(props.item.imdbID) === null) ? "Add To Watchlist": "Remove From Watchlist"
+    const initialText = (localStorage.getItem(props.item.imdbID) === null) ? "Add To Watchlist" : "Remove From Watchlist"
     const [addOrRemoveText, setAddOrRemoveText] = React.useState(initialText)
     const [addOrRemoveIcon, setAddOrRemoveIcon] = React.useState(initialIcon)
     const addOrRemoveFromWatchList = async (item) => {
@@ -64,14 +64,14 @@ export default function DetailsDialog(props) {
                         <DialogContent display="flex" >
                             <Box display="flex" padding="0" height="50%" width="100%">
                                 <Box height="100%" width="50%">
-                                    <img className={classes.image} src={props.item.Poster=='N/A' ? ImageHolder : props.item.Poster} alt={props.item.Title + " Poster"} />
+                                    <img className={classes.image} src={props.item.Poster == 'N/A' ? ImageHolder : props.item.Poster} alt={props.item.Title + " Poster"} />
                                 </Box>
                                 <Box flexGrow="1" paddingLeft="2rem">
                                     <Box>
                                         <ul className={classes.unstyledList}>
                                             <li>
-                                                <span style={{ "fontWeight": "bold" }}>IMDB:</span> {props.item.imdbRating}/10
-                                    </li>
+                                                <span style={{ "fontWeight": "bold" }}>IMDB:</span> <a href={getImdbLink(props.item.imdbID)} target="_blank">{props.item.imdbRating}/10</a>
+                                            </li>
                                             {
                                                 props.item.Ratings.map((obj, index) => {
                                                     return (<li key={index}><span style={{ "fontWeight": "bold" }}>{obj.Source}:</span> {obj.Value}</li>)
@@ -107,7 +107,7 @@ export default function DetailsDialog(props) {
                         <DialogContent display="flex" >
                             <Box display="flex" padding="0" height="100%" width="100%">
                                 <Box height="100%" width="100%">
-                                    <img className={classes.image} src={props.item.Poster=='N/A' ? ImageHolder : props.item.Poster} alt={props.item.Title + " Poster"} />
+                                    <img className={classes.image} src={props.item.Poster == 'N/A' ? ImageHolder : props.item.Poster} alt={props.item.Title + " Poster"} />
                                 </Box>
                             </Box>
                             <Box display="flex" paddingTop="1rem">
@@ -147,7 +147,7 @@ export default function DetailsDialog(props) {
                         </DialogContent>
                     }
                     <DialogActions>
-                        <Button className={classes.bottomRightButton} style={{"marginBottom": "1rem", "marginRight": "1rem"}} onClick={() => {addOrRemoveFromWatchList(props.item); props.isWatchlistUpdatedCallback();}}>
+                        <Button className={classes.bottomRightButton} style={{ "marginBottom": "1rem", "marginRight": "1rem" }} onClick={() => { addOrRemoveFromWatchList(props.item); props.isWatchlistUpdatedCallback(); }}>
                             {addOrRemoveIcon} {addOrRemoveText}
                         </Button>
                     </DialogActions>
