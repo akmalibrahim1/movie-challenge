@@ -7,9 +7,11 @@ import { Box } from '@material-ui/core';
 import Watchlist from './views/watchlist'
 import theme from './style/theme';
 import { ThemeProvider } from '@material-ui/styles';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { SearchResults } from './views/search'
 import { WatchlistStats } from './views/watchlist-stats'
+import  LandingPage  from './views/landing'
+
 require("dotenv").config() 
 
 ReactDOM.render(
@@ -19,6 +21,8 @@ ReactDOM.render(
         <Header />
         <Box marginLeft="10%" marginRight="10%">
           <Switch>
+          <Route exact path="/" render={() => { return <Redirect to="/home" />}}/>
+            <Route path="/home" component={LandingPage}/>
             <Route path="/watchlist" component={Watchlist}/>
             <Route path="/searchresults" component={SearchResults}/>
             <Route path="/watchliststats" component={WatchlistStats}/>
