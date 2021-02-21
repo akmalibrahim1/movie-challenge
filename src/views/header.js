@@ -87,9 +87,11 @@ function Header() {
       <AppBar position="static" color="primary">
         <Toolbar className={classes.headerPadding}>
           <span>
+            <a href="/" style={{color: "white", textDecoration: "none"}}>
             <Typography className={classes.title} noWrap>
-              Project Sunshine
+              MyWatchlist
             </Typography>
+            </a>
           </span>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
