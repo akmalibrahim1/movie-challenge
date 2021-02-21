@@ -22,34 +22,34 @@ export function WatchlistStats(props) {
     var runtimeDisplay = []
     var directorDisplay = []
     var ratingDisplay = []
-    const generateListBreakdown = (itemsList, resultsList) => {
+    const generateListBreakdown = (itemsList, resultsList, additionalMessage) => {
         var index = 0
         for (const [key, value] of Object.entries(itemsList)) {
             if (index > 4) {
                 break;
             }
             resultsList.push(
-                (<li key={index}><span>{key}</span></li>)
+                (<li key={index}><span>{key} {additionalMessage}</span></li>)
             )
             index++
         }
     }
-    const generateAggregateBreakdowns = (itemsList, resultsList) => {
+    const generateAggregateBreakdowns = (itemsList, resultsList, additionalMessage) => {
         var index = 0
         for (const [key, value] of Object.entries(itemsList)) {
             if (index > 4) {
                 break;
             }
             resultsList.push(
-                (<li key={index}><span>{key}: {value}</span></li>)
+                (<li key={index}><span>{key}: {value}{additionalMessage}</span></li>)
             )
             index++
         }
     }
     generateListBreakdown(genreBreakdown, genreDisplay)
     generateListBreakdown(directorBreakdown, directorDisplay)
-    generateAggregateBreakdowns(runTimeBreakdown, runtimeDisplay)
-    generateAggregateBreakdowns(ratingBreakdown, ratingDisplay)
+    generateAggregateBreakdowns(runTimeBreakdown, runtimeDisplay, " min")
+    generateAggregateBreakdowns(ratingBreakdown, ratingDisplay, "/10")
     return (
         <div style={{ "flexGrow": 1, "marginTop": "1rem" }}>
             { 
