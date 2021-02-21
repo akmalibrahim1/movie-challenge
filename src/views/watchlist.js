@@ -42,47 +42,43 @@ const useStyles = makeStyles((theme) => ({
 export default function Watchlist() {
   const classes = useStyles();
   const initialAllWatchList = watchlist.getWishlistItems(watchlist.TYPES.all)
-  console.log("All watchlist: " + JSON.stringify(initialAllWatchList))
   const initialMoviesWatchList = watchlist.getWishlistItems(watchlist.TYPES.movies)
-  console.log(JSON.stringify("movie watchlist: " + JSON.stringify(initialMoviesWatchList)))
   const initialSeriesWatchList = watchlist.getWishlistItems(watchlist.TYPES.series)
-  console.log(JSON.stringify(JSON.stringify(initialSeriesWatchList)))
   const [value, setValue] = React.useState(0);
   const [allWatchlist, setAllWatchlist] = React.useState(initialAllWatchList)
   const [moviesWatchlist, setMoviesWatchlist] = React.useState(initialMoviesWatchList)
   const [seriesWatchlist, setSeriesWatchlist] = React.useState(initialSeriesWatchList)
-
+  const [isUpdated, setIsUpdated] = React.useState(false)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  React.useEffect(() => {
+    if (isUpdated) {
+      setAllWatchlist(watchlist.getWishlistItems(watchlist.TYPES.all))
+      setMoviesWatchlist(watchlist.getWishlistItems(watchlist.TYPES.movies))
+      setSeriesWatchlist(watchlist.getWishlistItems(watchlist.TYPES.series))
+      setIsUpdated(false)
+    }
+  }, [isUpdated])
 
 
-  // setAllWatchlist(initialAllWatchList)
-  // setMoviesWatchlist(initialMoviesWatchList)
-  // setSeriesWatchlist(initialSeriesWatchList)
-
-  // React.useEffect(() => {
-  //   setAllWatchlist(watchlist.getWishlistItems(watchlist.TYPES.all))
-  //   setMoviesWatchlist(watchlist.getWishlistItems(watchlist.TYPES.movies))
-  //   setSeriesWatchlist(watchlist.getWishlistItems(watchlist.TYPES.series))
-  // }, [localStorage])
 
   return (
     <div className={classes.root}>
-      <Tabs value={value} onChange={handleChange} style={{"marginTop" : "3.5rem", "marginBottom": "2rem"}} aria-label="simple tabs example">
+      <Tabs value={value} onChange={handleChange} style={{ "marginTop": "3.5rem", "marginBottom": "2rem" }} aria-label="simple tabs example">
         <Tab label="All" id="all-tab" aria-controls="all-tabpanel" />
         <Tab label="Movies" id="movies-tab" aria-controls="movies-tabpanel" />
         <Tab label="Series" id="series-tab" aria-controls="series-tabpanel" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <DisplayGrid itemsToDisplay={allWatchlist} />
+        <DisplayGrid changeCallback={setIsUpdated} itemsToDisplay={allWatchlist} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <DisplayGrid itemsToDisplay={moviesWatchlist} />
+        <DisplayGrid changeCallback={setIsUpdated} itemsToDisplay={moviesWatchlist} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <DisplayGrid itemsToDisplay={seriesWatchlist} />
+        <DisplayGrid changeCallback={setIsUpdated} itemsToDisplay={seriesWatchlist} />
       </TabPanel>
     </div>
   );

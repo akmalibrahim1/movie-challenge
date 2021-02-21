@@ -27,7 +27,7 @@ function DisplayGrid(props) {
             {
                 props.itemsToDisplay.map((result, index) => (
                     <Grid key={index} item xs={itemsPerRow}>
-                        <DisplayCard imdbId={result.imdbID} poster={result.Poster}
+                        <DisplayCard changeCallback={props.changeCallback} imdbId={result.imdbID} poster={result.Poster}
                             title={result.Title} year={result.Year} plot={result.Plot} />
                     </Grid>
                 ))

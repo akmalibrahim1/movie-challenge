@@ -18,11 +18,11 @@ export function DisplayCard(props) {
       var result = await searchById(imdbId)
       localStorage.setItem(imdbId, JSON.stringify(result));
       setAddOrRemoveIcon(<TurnedInIcon />)
-      console.log("Added to local storage: " + imdbId)
     } else {
       localStorage.removeItem(imdbId);
-      setAddOrRemoveIcon(<TurnedInNotIcon />)
-      console.log("Removed from local storage: " + imdbId)
+    }
+    if (props.changeCallback != undefined) {
+      props.changeCallback(true)
     }
   }
 
@@ -35,18 +35,22 @@ export function DisplayCard(props) {
     setItemDetails(result)
     setOpen(true);
   };
-  const handleClose = (isAdded) => {
+  const handleClose = () => {
     setItemDetails(null)
     setOpen(false);
   };
 
   React.useEffect(() => {
-    if (itemDetails != null) {
+    if (props.changeCallback != undefined) {
+      props.changeCallback(true)
+      setOpen(false)
+    }else if (itemDetails != null) {
       if (localStorage.getItem(itemDetails.imdbID) == null) {
         setAddOrRemoveIcon(<TurnedInNotIcon />)
       } else {
         setAddOrRemoveIcon(<TurnedInIcon />)
       }
+      
       setIsWatchlistUpdated(false)
     }
   }, [isWatchlistUpdated])
@@ -55,7 +59,7 @@ export function DisplayCard(props) {
     <Paper elevation={3} className={classes.paper}>
       <Box>
         <Button className={classes.image} disableTouchRipple={true} disableRipple={true} onClick={() => handleClickOpen(props.imdbId)}>
-          <img className={classes.image} src={props.poster=='N/A' ? ImageHolder : props.poster} alt="recipe thumbnail" />
+          <img className={classes.image} src={props.poster == 'N/A' ? ImageHolder : props.poster} alt="recipe thumbnail" />
         </Button>
       </Box>
       <Box padding="1rem" justifyContent="bottom">
